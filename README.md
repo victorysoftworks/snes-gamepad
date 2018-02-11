@@ -56,9 +56,11 @@ The `getPressedButtons` method returns an Array of `SnesGamepadButton` enumerate
 
 If no buttons are being pressed on the gamepad, or if there is no gamepad connected, this method returns an empty Array.
 
+You are encouraged to place your manual checking for button presses inside an `onConnected` callback, preferably within a `setInterval` or `requestAnimationFrame` function that can be cancelled if the `onDisconnected` callback fires.
+
 ### Vanilla JavaScript
 
-If you are using the compiled `SnesGamepad` library in a vanilla JavaScript project, the enumerated values are cast to plain strings, such as `"Up"`, `"A"`, or `"Start"`.
+If you are using the compiled SNES Gamepad library in a vanilla JavaScript project, the enumerated values are cast to plain strings, such as `"Up"`, `"A"`, or `"Start"`.
 
 ## Method Reference
 
