@@ -1,5 +1,7 @@
 # SNES Gamepad
 
+Version: `1.1.0`
+
 A TypeScript library providing a simple interface for using USB SNES gamepads in HTML5 game projects.
 
 For more on the :video_game: Gamepad API, see https://w3c.github.io/gamepad/ and https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API.
@@ -29,6 +31,35 @@ gamepad.onBButtonPressed(() => {
 gamepad.enable();
 ```
 
+## Manually Reading Pressed Buttons
+
+If you need to read the list of pressed gamepad buttons manually, you can do so with the `getPressedButtons` method.
+
+```javascript
+let pressedButtons = gamepad.getPressedButtons();
+```
+
+The `getPressedButtons` method returns an Array of `SnesGamepadButton` enumerated values representing each button that is currently pressed:
+
+- `SnesGamepadButton.Up`
+- `SnesGamepadButton.Down`
+- `SnesGamepadButton.Left`
+- `SnesGamepadButton.Right`
+- `SnesGamepadButton.A`
+- `SnesGamepadButton.B`
+- `SnesGamepadButton.X`
+- `SnesGamepadButton.Y`
+- `SnesGamepadButton.LeftBumper`
+- `SnesGamepadButton.RightBumper`
+- `SnesGamepadButton.Select`
+- `SnesGamepadButton.Start`
+
+If no buttons are being pressed on the gamepad, or if there is no gamepad connected, this method returns an empty Array.
+
+### Vanilla JavaScript
+
+If you are using the compiled `SnesGamepad` library in a vanilla JavaScript project, the enumerated values are cast to plain strings, such as `"Up"`, `"A"`, or `"Start"`.
+
 ## Method Reference
 
 | Method                | Parameters             | Description                                                                                                                                       |
@@ -50,6 +81,7 @@ gamepad.enable();
 | onRightBumperPressed  | `callback: () => void` | Binds a callback function to execute when the right bumper is pressed.                                                                            |
 | onSelectButtonPressed | `callback: () => void` | Binds a callback function to execute when the select button is pressed.                                                                           |
 | onStartButtonPressed  | `callback: () => void` | Binds a callback function to execute when the start button is pressed.                                                                            |
+| getPressedButtons     | None                   | Returns an Array of `SnesGamepadButton` enumerated values representing the gamepad buttons currently being pressed.                               |
 
 ## Available Mappings
 

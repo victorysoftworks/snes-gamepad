@@ -1,5 +1,6 @@
 // For more on the Gamepad API, see https://w3c.github.io/gamepad/.
 
+/// <reference path="SnesGamepadButton.ts" />
 /// <reference path="SnesGamepadEventHandler.ts" />
 /// <reference path="SnesGamepadMapping.ts" />
 
@@ -195,6 +196,66 @@ namespace VictorySoftworks.IO.Gamepad.SnesGamepad {
 
     private registerButtonPressHandler(trigger: SnesGamepadEvent, callback: () => void): void {
       this.buttonPressHandlers.push([trigger, callback]);
+    }
+
+    public getPressedButtons(): Array<SnesGamepadButton> {
+      this.getConnectedGamepad();
+
+      if (this.gamepadIsConnected()) {
+        let pressedButtons = [];
+
+        if (this.mapping.upButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Up);
+        }
+
+        if (this.mapping.downButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Down);
+        }
+
+        if (this.mapping.leftButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Left);
+        }
+
+        if (this.mapping.rightButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Right);
+        }
+
+        if (this.mapping.AButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.A);
+        }
+
+        if (this.mapping.BButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.B);
+        }
+
+        if (this.mapping.XButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.X);
+        }
+
+        if (this.mapping.YButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Y);
+        }
+
+        if (this.mapping.leftBumperIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.LeftBumper);
+        }
+
+        if (this.mapping.rightBumperIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.RightBumper);
+        }
+
+        if (this.mapping.selectButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Select);
+        }
+
+        if (this.mapping.startButtonIsPressed(this.gamepad)) {
+          pressedButtons.push(SnesGamepadButton.Start);
+        }
+
+        return pressedButtons;
+      } else {
+        return [];
+      }
     }
   }
 }
